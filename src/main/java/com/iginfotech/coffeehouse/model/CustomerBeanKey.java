@@ -1,11 +1,8 @@
 package com.iginfotech.coffeehouse.model;
 
-public class CustomerBean {
+public class CustomerBeanKey {
 	private String custName;
 	private String phoneNumber;
-	private String emailId;
-	private String deliveryAddress;
-	
 	public String getCustName() {
 		return custName;
 	}
@@ -18,7 +15,19 @@ public class CustomerBean {
 	public void setPhoneNumber(String phoneNumber) {
 		this.phoneNumber = phoneNumber;
 	}
-	
+	public CustomerBeanKey() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+	public CustomerBeanKey(String custName, String phoneNumber) {
+		super();
+		this.custName = custName;
+		this.phoneNumber = phoneNumber;
+	}
+	@Override
+	public String toString() {
+		return "CustomerBeanKey [custName=" + custName + ", phoneNumber=" + phoneNumber + "]";
+	}
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -35,7 +44,7 @@ public class CustomerBean {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		CustomerBean other = (CustomerBean) obj;
+		CustomerBeanKey other = (CustomerBeanKey) obj;
 		if (custName == null) {
 			if (other.custName != null)
 				return false;
@@ -48,34 +57,4 @@ public class CustomerBean {
 			return false;
 		return true;
 	}
-	
-	public String getDeliveryAddress() {
-		return deliveryAddress;
-	}
-	public void setDeliveryAddress(String deliveryAddress) {
-		this.deliveryAddress = deliveryAddress;
-	}
-	public String getEmailId() {
-		return emailId;
-	}
-	public void setEmailId(String emailId) {
-		this.emailId = emailId;
-	}
-	public CustomerBean() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
-	public CustomerBean(String custName, String phoneNumber, String emailId, String deliveryAddress) {
-		super();
-		this.custName = custName;
-		this.phoneNumber = phoneNumber;
-		this.emailId = emailId;
-		this.deliveryAddress = deliveryAddress;
-	}
-	@Override
-	public String toString() {
-		return "CustomerBean [custName=" + custName + ", phoneNumber=" + phoneNumber + ", emailId=" + emailId
-				+ ", deliveryAddress=" + deliveryAddress + "]";
-	}
-
 }

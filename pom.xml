@@ -3,7 +3,7 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
-	<groupId>com.example</groupId>
+	<groupId>com.iginfotech.coffeehouse</groupId>
 	<artifactId>CoffeeHouseNew</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>jar</packaging>
@@ -35,12 +35,11 @@
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
-		<dependency>
-			<groupId>org.json</groupId>
-			<artifactId>json</artifactId>
-			<version>20180130</version>
-		</dependency>
-
+	<dependency>
+    <groupId>org.json</groupId>
+    <artifactId>json</artifactId>
+    <version>20151123</version>
+</dependency>
 	</dependencies>
 
 	<build>
@@ -53,9 +52,4 @@
 	</build>
 
 
-	<dependencyManagement>
-		<dependencies>
-			
-		</dependencies>
-	</dependencyManagement>
 </project>

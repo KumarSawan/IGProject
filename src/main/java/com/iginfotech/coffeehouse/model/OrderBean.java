@@ -1,23 +1,16 @@
 package com.iginfotech.coffeehouse.model;
 
 import java.time.LocalDateTime;
-import java.util.HashMap;
+import java.util.ArrayList;
+import java.util.List;
 
 public class OrderBean {
 
 	private String custName;
 	private String phoneNumber;
-	private HashMap<String, Integer> orderedCoffee = new HashMap<>();
+	List<CoffeeBean>coffee=new ArrayList<>();
 	private LocalDateTime orderTime;
-
-	public HashMap<String, Integer> getOrderedCoffee() {
-		return orderedCoffee;
-	}
-
-	public void setOrderedCoffee(HashMap<String, Integer> orderedCoffee) {
-		this.orderedCoffee = orderedCoffee;
-	}
-
+	
 	public String getCustName() {
 		return custName;
 	}
@@ -40,6 +33,14 @@ public class OrderBean {
 
 	public void setOrderTime(LocalDateTime localDateTime) {
 		this.orderTime = localDateTime;
+	}
+
+	public List<CoffeeBean> getCoffee() {
+		return coffee;
+	}
+
+	public void setCoffee(List<CoffeeBean> coffee) {
+		this.coffee = coffee;
 	}
 
 }

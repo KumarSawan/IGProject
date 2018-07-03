@@ -6,6 +6,19 @@ public class ReportBean {
 	private int totalServingsPerDay;
 	private int totalServingsPerDaySold;
 
+	
+
+	public ReportBean() {
+		super();
+	}
+
+	public ReportBean(String coffeeName, int totalServingsPerDay, int totalServingsPerDaySold) {
+		super();
+		this.coffeeName = coffeeName;
+		this.totalServingsPerDay = totalServingsPerDay;
+		this.totalServingsPerDaySold = totalServingsPerDaySold;
+	}
+
 	public String getCoffeeName() {
 		return coffeeName;
 	}
