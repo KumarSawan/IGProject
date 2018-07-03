@@ -9,6 +9,7 @@ import org.springframework.context.annotation.ComponentScan;
 @EnableAutoConfiguration
 @ComponentScan
 public class CoffeeHouseApplication {
+	
 
 	public static void main(String[] args) {
 		SpringApplication.run(CoffeeHouseApplication.class, args);
