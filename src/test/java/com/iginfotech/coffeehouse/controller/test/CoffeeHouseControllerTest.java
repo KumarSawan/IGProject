@@ -1,7 +1,12 @@
 package com.iginfotech.coffeehouse.controller.test;
 
+import java.util.List;
+import java.util.ArrayList;
 import java.util.Map;
 import org.junit.*;
+import org.junit.runner.RunWith;
+import org.mockito.junit.MockitoJUnitRunner;
+
 import static org.junit.Assert.*;
 
 import com.iginfotech.coffeehouse.controller.CoffeeHouseController;
@@ -18,6 +23,7 @@ import com.iginfotech.coffeehouse.service.CoffeeHouseService;
  * @author KS00508444
  * @version $Revision: 1.0 $
  */
+@RunWith(MockitoJUnitRunner.class)
 public class CoffeeHouseControllerTest {
 	/**
 	 * Run the String addCustomerDetailsMap(CustomerBean) method test.
@@ -32,12 +38,15 @@ public class CoffeeHouseControllerTest {
 		CoffeeHouseController fixture = new CoffeeHouseController();
 		fixture.coffeeHouseService = new CoffeeHouseService();
 		CustomerBean customerDetails = new CustomerBean();
-
+		customerDetails.setCustName("Kumar Sawan");
+		customerDetails.setPhoneNumber("8971957135");
+		customerDetails.setEmailId("sawanraj55@gmail.com");
+		customerDetails.setDeliveryAddress("Maranga");
 		String result = fixture.addCustomerDetailsMap(customerDetails);
-
-		// add additional test code here
 		assertEquals("Customer is added successfully.", result);
 	}
+	
+	
 
 	/**
 	 * Run the String addNewCoffeeVarityMap(CoffeeBean) method test.
@@ -52,6 +61,10 @@ public class CoffeeHouseControllerTest {
 		CoffeeHouseController fixture = new CoffeeHouseController();
 		fixture.coffeeHouseService = new CoffeeHouseService();
 		CoffeeBean coffeeDetails = new CoffeeBean();
+		coffeeDetails.setCoffeeName("Latte");
+		coffeeDetails.setCoffeeDescription("Strong Coffee");
+		coffeeDetails.setQuantity(10);
+		coffeeDetails.setServingsPerDay(150);
 
 		String result = fixture.addNewCoffeeVarityMap(coffeeDetails);
 
@@ -71,13 +84,16 @@ public class CoffeeHouseControllerTest {
 		throws Exception {
 		CoffeeHouseController fixture = new CoffeeHouseController();
 		fixture.coffeeHouseService = new CoffeeHouseService();
+		//ReportBean bean=new ReportBean();
+		
 
 		Map<String, ReportBean> result = fixture.generateReportMap();
+		
 
 		// add additional test code here
 		assertNotNull(result);
 		assertEquals(1, result.size());
-		assertTrue(result.containsKey(null));
+		assertTrue(result.containsKey("Latte"));
 	}
 
 	/**
@@ -92,13 +108,11 @@ public class CoffeeHouseControllerTest {
 		throws Exception {
 		CoffeeHouseController fixture = new CoffeeHouseController();
 		fixture.coffeeHouseService = new CoffeeHouseService();
-		String custName = "";
-		String phoneNumber = "";
-
+		String custName = "Kumar Sawan";
+		String phoneNumber = "8971957135";
 		CustomerBean result = fixture.getAllCustomerDetails(custName, phoneNumber);
-
-		// add additional test code here
-		assertEquals(null, result);
+		assertNotNull(result);
+		assertEquals("sawanraj55@gmail.com", result.getEmailId());
 	}
 
 	/**
@@ -114,13 +128,20 @@ public class CoffeeHouseControllerTest {
 		CoffeeHouseController fixture = new CoffeeHouseController();
 		fixture.coffeeHouseService = new CoffeeHouseService();
 		OrderBean orderDetails = new OrderBean();
+		List<CoffeeBean> coffeeBeanList=new ArrayList<>();
+		CoffeeBean coffeeBean=new CoffeeBean();
+		coffeeBean.setCoffeeName("Latte");
+		coffeeBean.setQuantity(10);
+		coffeeBeanList.add(coffeeBean);
+		orderDetails.setCoffee(coffeeBeanList);
+		orderDetails.setCustName("sawan");
+		orderDetails.setPhoneNumber("8971957135");
 
 		OrderBean result = fixture.processAnOrder(orderDetails);
-
-		// add additional test code here
-		assertNotNull(result);
-		assertEquals(null, result.getCustName());
-		assertEquals(null, result.getPhoneNumber());
+		
+		assertNotNull((result.getOrderTime()));
+		assertEquals(orderDetails.getCustName(), result.getCustName());
+		assertEquals(orderDetails.getCoffee().size(),result.getCoffee().size());
 	}
 
 	/**

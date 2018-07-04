@@ -1,8 +1,8 @@
 package com.iginfotech.coffeehouse.controller.test;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-import net.minidev.json.JSONArray;
 import org.junit.*;
 import static org.junit.Assert.*;
 import com.iginfotech.coffeehouse.model.CoffeeBean;
@@ -43,11 +43,9 @@ public class CoffeeHouseServiceTest {
 	public void testAddCustomerDetailsMap_1()
 		throws Exception {
 		CoffeeHouseService fixture = new CoffeeHouseService();
-		CustomerBean custBean = new CustomerBean("", "", "", "");
+		CustomerBean custBean = new CustomerBean("sawan", "8971957135", "sawan55@gmail.com", "Bangalore");
 
 		String result = fixture.addCustomerDetailsMap(custBean);
-
-		// add additional test code here
 		assertEquals("Customer is added successfully.", result);
 	}
 
@@ -62,11 +60,9 @@ public class CoffeeHouseServiceTest {
 	public void testAddCustomerDetailsMap_2()
 		throws Exception {
 		CoffeeHouseService fixture = new CoffeeHouseService();
-		CustomerBean custBean = new CustomerBean("", "", "", "");
+		CustomerBean custBean = new CustomerBean("sawan", "8971957135", "sawan55@gmail.com", "Bangalore");
 
 		String result = fixture.addCustomerDetailsMap(custBean);
-
-		// add additional test code here
 		assertEquals("Customer already exists.", result);
 	}
 
@@ -81,11 +77,9 @@ public class CoffeeHouseServiceTest {
 	public void testAddNewCoffeeVarityMap_1()
 		throws Exception {
 		CoffeeHouseService fixture = new CoffeeHouseService();
-		CoffeeBean coffeeBean = new CoffeeBean("", "", 1, 1);
+		CoffeeBean coffeeBean = new CoffeeBean("Latte", "Strong", 150, 1);
 
 		String result = fixture.addNewCoffeeVarityMap(coffeeBean);
-
-		// add additional test code here
 		assertEquals("New Variety of coffee is added.", result);
 	}
 
@@ -100,11 +94,9 @@ public class CoffeeHouseServiceTest {
 	public void testAddNewCoffeeVarityMap_2()
 		throws Exception {
 		CoffeeHouseService fixture = new CoffeeHouseService();
-		CoffeeBean coffeeBean = new CoffeeBean("", "", 1, 1);
+		CoffeeBean coffeeBean = new CoffeeBean("Latte", "Strong", 150, 1);
 
 		String result = fixture.addNewCoffeeVarityMap(coffeeBean);
-
-		// add additional test code here
 		assertEquals("Coffee variety already exists.", result);
 	}
 
@@ -125,7 +117,7 @@ public class CoffeeHouseServiceTest {
 		// add additional test code here
 		assertNotNull(result);
 		assertEquals(1, result.size());
-		assertTrue(result.containsKey(""));
+		assertTrue(result.containsKey("Latte"));
 	}
 
 	/**
@@ -139,18 +131,18 @@ public class CoffeeHouseServiceTest {
 	public void testGetAllCustomerDetails_1()
 		throws Exception {
 		CoffeeHouseService fixture = new CoffeeHouseService();
-		String custName = "";
-		String phoneNumber = "";
+		String custName = "sawan";
+		String phoneNumber = "8971957135";
 
 		CustomerBean result = fixture.getAllCustomerDetails(custName, phoneNumber);
 
 		// add additional test code here
 		assertNotNull(result);
-		assertEquals("CustomerBean [custName=, phoneNumber=, emailId=, deliveryAddress=]", result.toString());
-		assertEquals("", result.getCustName());
-		assertEquals("", result.getPhoneNumber());
-		assertEquals("", result.getEmailId());
-		assertEquals("", result.getDeliveryAddress());
+		assertEquals("CustomerBean [custName=sawan, phoneNumber=8971957135, emailId=sawan55@gmail.com, deliveryAddress=Bangalore]", result.toString());
+		assertEquals("sawan", result.getCustName());
+		assertEquals("8971957135", result.getPhoneNumber());
+		assertEquals("sawan55@gmail.com", result.getEmailId());
+		assertEquals("Bangalore", result.getDeliveryAddress());
 	}
 
 	/**
@@ -164,15 +156,21 @@ public class CoffeeHouseServiceTest {
 	public void testProcessAnOrder_1()
 		throws Exception {
 		CoffeeHouseService fixture = new CoffeeHouseService();
-		OrderBean orderBean = new OrderBean();
-		//orderBean.setCoffee(new JSONArray());
+		//OrderBean orderBean = new OrderBean();
+		OrderBean orderDetails = new OrderBean();
+		List<CoffeeBean> coffeeBeanList=new ArrayList<>();
+		CoffeeBean coffeeBean=new CoffeeBean();
+		coffeeBean.setCoffeeName("Latte");
+		coffeeBean.setQuantity(10);
+		coffeeBeanList.add(coffeeBean);
+		orderDetails.setCoffee(coffeeBeanList);
+		orderDetails.setCustName("sawan");
+		orderDetails.setPhoneNumber("8971957135");
 
-		OrderBean result = fixture.processAnOrder(orderBean);
-
-		// add additional test code here
-		assertNotNull(result);
-		assertEquals(null, result.getCustName());
-		assertEquals(null, result.getPhoneNumber());
+		OrderBean result = fixture.processAnOrder(orderDetails);
+		assertNotNull(result.getOrderTime());
+		assertEquals("sawan", result.getCustName());
+		assertEquals(orderDetails.getCoffee().size(), result.getCoffee().size());
 	}
 
 	/**
@@ -182,29 +180,8 @@ public class CoffeeHouseServiceTest {
 	 *
 	 * @generatedBy CodePro at 7/3/18 12:00 PM
 	 */
-	@Test
-	public void testProcessAnOrder_2()
-		throws Exception {
-		CoffeeHouseService fixture = new CoffeeHouseService();
-		OrderBean orderBean = new OrderBean();
-		//orderBean.setCoffee(new JSONArray());
-
-		OrderBean result = fixture.processAnOrder(orderBean);
-
-		// add additional test code here
-		assertNotNull(result);
-		assertEquals(null, result.getCustName());
-		assertEquals(null, result.getPhoneNumber());
-	}
-
-	/**
-	 * Perform pre-test initialization.
-	 *
-	 * @throws Exception
-	 *         if the initialization fails for some reason
-	 *
-	 * @generatedBy CodePro at 7/3/18 12:00 PM
-	 */
+	
+	
 	@Before
 	public void setUp()
 		throws Exception {
